@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dotenv = require('dotenv'); // Suppression du doublon
+const { userRouter } = require('./routes/users.route');
 
 // --- CONFIGURATION DES VARIABLES D'ENVIRONNEMENT ---
 // Détermination du fichier .env à charger en fonction de NODE_ENV
@@ -33,6 +34,8 @@ app.use(cookieParser());
 
 // Servir les fichiers statiques depuis le dossier 'public'
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api',userRouter)
 
 // --- VERIFICATION DE LA CONFIGURATION ---
 // Affichage des variables d'environnement chargées
